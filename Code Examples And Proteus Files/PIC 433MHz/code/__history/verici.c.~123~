@@ -1,0 +1,178 @@
+#include <16F628A.h> 
+#fuses HS,NOWDT,NOPROTECT, NOMCLR,NOLVP,NOPUT,NOCPD // Denetleyici konfigürasyon ayarlarý
+#use delay (clock=20000000) 
+#use rs232(baud=1200, xmit=PIN_B2, rcv=PIN_B1,stop=1, parity=N) 
+ 
+ #define BUTTON_1 pin_b5 // trig pini a0 olarak ayarlandý
+ #define  BUTTON_2 pin_b4 // echo pini a1 olarak ayarlandý
+   
+ 
+
+ 
+ int i; 
+ 
+
+ 
+ 
+
+ 
+ 
+ 
+ 
+ /********* ANA PROGRAM FONKSÝYONU********/
+
+ void main ( )
+ {
+
+  output_b(0x00);//portb sýfýrlandý
+  output_a(0x00);//porta sýfýrlaandý
+ output_high(pin_b3); //calisma gostergesi
+
+ setup_timer_2(T2_DISABLED,0,1); 
+ setup_CCP1(CCP_OFF); 
+ set_tris_b(0x30); 
+ set_tris_a(0x00); 
+
+
+
+
+ while(1) 
+
+ {
+ 
+    if(input(BUTTON_1) && !input(BUTTON_2) )
+   
+        { 
+
+       
+ sorgu1:
+
+          
+
+    
+         for(i=0;i<5;i++) {putc(0x55);}
+   
+         for(i=0;i<5;i++) {putc(0x00);}
+  
+         for(i=0;i<5;i++) {putc(0x55);}
+     
+         for(i=0;i<5;i++)  {putc('M');}
+    
+         putc('S'); // alýcýdaki "while(getch()=='X');" ifadesi için herhangi bir boþ karakter.    
+     
+         putc('A') ;
+         
+         
+    
+         
+         
+    
+          while(input(BUTTON_1)  &&  input(BUTTON_2) ) {}    
+     
+    
+     
+          while(input(BUTTON_1))   
+                  
+                  {if(input(BUTTON_2) ) 
+                           
+                            {  
+                                   goto sorgu1;
+                                  
+                                  
+                            }
+                  }
+
+
+         
+  
+
+         for(i=0;i<5;i++) {putc(0x55);}
+   
+         for(i=0;i<5;i++) {putc(0x00);}
+  
+         for(i=0;i<5;i++) {putc(0x55);}
+     
+         for(i=0;i<5;i++)  {putc('M');}
+    
+         putc('S'); // alýcýdaki "while(getch()=='X');" ifadesi için herhangi bir boþ karakter.    
+     
+         putc('D') ;
+
+
+     
+
+        }
+        
+//////////////////////////////////////////////////////////////////////////7
+ 
+ 
+     if(input(BUTTON_2) && !input(BUTTON_1) )
+   
+        { 
+ 
+          sorgu2:
+
+    
+         for(i=0;i<5;i++) {putc(0x55);}
+   
+         for(i=0;i<5;i++) {putc(0x00);}
+  
+         for(i=0;i<5;i++) {putc(0x55);}
+     
+         for(i=0;i<5;i++) {putc('M');}
+    
+         putc('S'); // alýcýdaki "while(getch()=='X');" ifadesi için herhangi bir boþ karakter. 
+           
+         putc('B');
+         
+             
+
+     
+     
+         while(input(BUTTON_1)  &&  input(BUTTON_2)) {}
+     
+        
+     
+         while(input(BUTTON_2))  
+         
+                     {if(input(BUTTON_1) ) 
+                          
+                                {  
+                                  
+                                   goto sorgu1;
+                                   
+                                }   
+                     }
+
+         
+  
+
+         for(i=0;i<5;i++) {putc(0x55);}
+   
+         for(i=0;i<5;i++) {putc(0x00);}
+  
+         for(i=0;i<5;i++) {putc(0x55);}
+     
+         for(i=0;i<5;i++)  {putc('M');}
+    
+         putc('S'); // alýcýdaki "while(getch()=='X');" ifadesi için herhangi bir boþ karakter.    
+     
+         putc('E') ;
+         
+         
+         
+         
+         
+       
+         
+        }
+ 
+ 
+        
+ 
+
+
+ }
+ 
+ }
+

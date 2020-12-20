@@ -1,0 +1,32 @@
+[PROJECT]
+Target=verici.hex
+Processor_Text=PIC16F628A
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=verici.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[verici.c]
+Type=4
+[mru-list]
+1=verici.c
+[Opened Files]
+1=verici.c
+2=
+3=
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=31-07-2017
+D1_L=4
+D1_L1=[71404]Project Opened.
+D1_L2=[71464]Project Closed.
+D1_L3=[71600]Project Opened.
+D1_L4=[71814]Project Closed.
+[Units]
+Count=1
+1=verici (main)

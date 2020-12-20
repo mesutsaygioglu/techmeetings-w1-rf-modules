@@ -1,0 +1,17 @@
+읕verici
+   읕main  0/95  Ram=0
+      쳐@cinit1  (Inline)  Ram=0
+      쳐readButtonOne  0/8  Ram=0
+      쳐preambleAndSynchronization  0/45  Ram=0
+      쳐turnOnLED  0/5  Ram=0
+      쳐sendFlagData  0/5  Ram=0
+      쳐@delay_ms1  0/21  Ram=1
+      쳐turnOffLED  0/5  Ram=0
+      쳐readButtonTwo  0/8  Ram=0
+      쳐preambleAndSynchronization  0/45  Ram=0
+      쳐turnOnLED  0/5  Ram=0
+      쳐sendFlagData  0/5  Ram=0
+      쳐@delay_ms1  0/21  Ram=1
+      쳐turnOffLED  0/5  Ram=0
+      쳐readButtonOne  0/8  Ram=0
+      읕readButtonTwo  0/8  Ram=0

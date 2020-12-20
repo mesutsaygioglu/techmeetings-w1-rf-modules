@@ -1,0 +1,129 @@
+#include <16F628A.h> 
+#fuses HS,NOWDT,NOPROTECT, NOMCLR,NOLVP,NOPUT,NOCPD // Denetleyici konfigürasyon ayarlarý
+#use delay (clock=20000000) 
+#use rs232(baud=9600, xmit=PIN_B2, rcv=PIN_B1,stop=1, parity=N) 
+
+
+ 
+
+
+ char xdata;
+ int i,a=0;
+
+int s1,s2;
+ 
+ 
+ #INT_RDA
+ void haberlesmekesmesi()
+ {
+ 
+
+ 
+ disable_interrupts(int_rda);
+ 
+ if(getch()=='M') 
+ {
+   while(getch()=='M') {}
+  
+  
+  
+          xdata=getch();
+          
+ 
+ 
+ 
+    
+     
+  
+     a=2; // Ana döngüde a>1 þartý için a=2,3,4 vs. olabilir.
+     enable_interrupts(int_rda);
+     enable_interrupts(GLOBAL);
+ 
+ }
+ 
+ 
+}
+
+ /********* ANA PROGRAM FONKSÝYONU********/
+
+
+ void main()
+ {
+ 
+ setup_timer_1(T1_DISABLED); 
+ setup_timer_2(T2_DISABLED,0,1); 
+ setup_CCP1(CCP_OFF);  
+ 
+ 
+ 
+
+
+
+
+ set_tris_a(0x00); 
+ set_tris_b(0x20); 
+
+
+  output_b(0x00);//portb sýfýrlandý
+  output_a(0x00);//porta sýfýrlaandý
+
+ output_high(pin_a3); 
+ 
+ while(1)
+ {
+ enable_interrupts(int_rda);
+ 
+ enable_interrupts(GLOBAL);
+ output_high(pin_a3); 
+
+if(a>1) {
+
+     //////////////////////////////////7     
+         if(xdata=='A' && s1==1)
+           
+            {
+             output_high(pin_a0);
+             
+             s1=0;
+            }
+
+
+
+         if(xdata=='B' && s2==1)
+           
+            {
+             output_high(pin_a1);
+             s2=0;
+            }        
+
+/////////////////////////////////////////////
+
+       if(xdata=='A' && s1==0)
+           
+            {
+             output_low(pin_a0);
+             
+             s1=1;
+            }
+
+
+
+         if(xdata=='B' && s2==0;)
+           
+            {
+             output_low(pin_a1);
+             s2=1;
+            } 
+
+
+
+
+         a=0;
+         
+        }
+ 
+
+  }
+  }
+
+

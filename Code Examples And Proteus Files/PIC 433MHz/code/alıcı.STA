@@ -1,0 +1,46 @@
+
+ROM used:   150/2048 (7%)
+            150/2048 (7%) including unused fragments
+
+            0.3 Average locations per line
+            5.0 Average locations per statement
+
+RAM used:   15/224 (7%) at main() level
+            16/224 (7%) worst case
+
+Stack used: 1 worst case (0 in main + 1 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   68    30 100  alýcý.c
+  518     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F628A.h
+----- -----
+  586    30 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     29  19    1   167  3.1  haberlesmekesmesi
+0     72  48    0   439  3.8  MAIN
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               2
+    Statements              30
+    Comments                101
+    Volume (V)              715
+    Difficulty (D)          6.8
+    Effort to implement (E) 4864
+    Time to implement (T)   5 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   4
+    Maintainability (MI)    46
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-00030    45  0  
+00031-007FF   101  1898  
+
+
+

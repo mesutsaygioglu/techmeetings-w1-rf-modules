@@ -1,0 +1,129 @@
+#include <16F628A.h> 
+#fuses HS,NOWDT,NOPROTECT, NOMCLR,NOLVP,NOPUT,NOCPD // Denetleyici konfigürasyon ayarlarý
+#use delay (clock=16000000) 
+#use rs232(baud=1200, xmit=PIN_B2, rcv=PIN_B1,stop=1, parity=N) 
+ 
+ #define BUTTON_1 pin_B3 // trig pini a0 olarak ayarlandý
+ #define  BUTTON_2 pin_A3 // echo pini a1 olarak ayarlandý
+   
+ #define led pin_b0
+
+ int i; 
+ int F=1;
+ int previousValueOfButton_1=0;
+ int previousValueOfButton_2=0;
+ 
+ void turnOffLED();
+ 
+ void turnOnLED();
+ 
+ void preambleAndSynchronization();
+ 
+ void sendFlagData();
+ 
+ 
+ int readButtonOne();
+ 
+ 
+ int readButtonTwo();
+ 
+ 
+ /********* ANA PROGRAM FONKSÝYONU********/
+
+ void main ( )
+ {
+
+  output_b(0x00);//portb sýfýrlandý
+  output_a(0x00);//porta sýfýrlaandý
+ 
+
+ setup_timer_2(T2_DISABLED,0,1); 
+ setup_CCP1(CCP_OFF); 
+ set_tris_b(0x02); 
+ set_tris_a(0x08); 
+
+
+
+
+ while(1) 
+
+ {
+ 
+   int result=readButtonOne();
+   if( result &&    result != previousValueOfButton_1)
+   {
+         previousValueOfButton_1=result;
+         preambleAndSynchronization();
+         turnOnLED();
+         sendFlagData();   
+         putc('A') ;
+         delay_ms(100);
+         turnOffLED();
+   }
+   
+       result=readButtonTwo();
+   if( result &&    result != previousValueOfButton_2)
+   {
+         previousValueOfButton_2=result;
+         preambleAndSynchronization();
+         turnOnLED();
+         sendFlagData();   
+         putc('B') ;
+         delay_ms(100);
+         turnOffLED();
+   }
+   
+   
+   if(!readButtonOno())
+   {
+      previousValueOfButton_2=~previousValueOfButton_2;
+   }
+   if(!readButtonTwo())
+   {
+      previousValueOfButton_1=~previousValueOfButton_1;
+   }
+ 
+
+ }
+ }
+ 
+ 
+
+
+void preambleAndSynchronization()
+{
+
+         {for(int i=0;i<5;i++) {putc(0x55);}} //ASCII "U"
+   
+         {for(int i=0;i<5;i++) {putc(0x00);}} // no equivalent
+  
+         {for(int i=0;i<5;i++) {putc(0x55);}} //ASCII "U"
+         
+         {for(int i=0;i<5;i++) { putc('M');}} //ASCII "M".also can be  putc(0x4d);
+}
+
+ void turnOffLED()
+ {
+  output_low(led);
+ }
+ 
+ void turnOnLED()
+ {
+  output_high(led);
+ }
+ 
+ void sendFlagData()
+ {
+   putc('S'); 
+ }
+ 
+ int readButtonOne()
+ {
+    return input(BUTTON_1);
+ }
+ 
+ 
+  int readButtonTwo()
+ {
+    return input(BUTTON_2);
+ }

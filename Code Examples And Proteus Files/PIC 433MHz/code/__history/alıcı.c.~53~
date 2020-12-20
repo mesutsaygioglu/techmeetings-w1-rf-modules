@@ -1,0 +1,169 @@
+#include <16F628A.h> 
+#fuses HS,NOWDT,NOPROTECT, NOMCLR,NOLVP,NOPUT,NOCPD // Denetleyici konfigürasyon ayarlarý
+#use delay (clock=20000000) 
+#use rs232(baud=1200, xmit=PIN_B2, rcv=PIN_B1,stop=1, parity=N) 
+
+#define mod PIN_B0
+
+ char xdata;
+ int a=0;
+
+int s1=1;
+ int s2=1;
+ 
+ 
+ #INT_RDA
+ void haberlesmekesmesi()
+ {
+ 
+
+ 
+ disable_interrupts(int_rda);
+ 
+ if(getch()=='M') 
+ {
+   while(getch()=='M') {}
+  
+  
+  
+          xdata=getch();
+          
+ 
+ 
+ if(input(mod)){
+ 
+ 
+ if(xdata=='A')
+ {
+ output_high(pin_a3);
+ 
+ }
+ else 
+ {
+ output_low(pin_a3);
+ }
+ if(xdata=='B') 
+ {
+ output_high(pin_a2);
+ }
+ else
+ {
+ output_low(pin_a2);
+ }
+ if (xdata== 'C')
+ {
+  output_high(pin_a3);
+  output_high(pin_a2)
+ }
+ else
+ {
+ output_low(pin_a3);
+  output_low(pin_a2)
+ }
+ 
+    
+ }
+ 
+ }
+    
+     
+  
+     a=2; // Ana döngüde a>1 þartý için a=2,3,4 vs. olabilir.
+     enable_interrupts(int_rda);
+     enable_interrupts(GLOBAL);
+ 
+ }
+ 
+ 
+}
+
+ /********* ANA PROGRAM FONKSÝYONU********/
+
+
+ void main()
+ {
+ 
+ setup_timer_1(T1_DISABLED); 
+ setup_timer_2(T2_DISABLED,0,1); 
+ setup_CCP1(CCP_OFF);  
+ 
+ 
+ 
+
+
+
+
+ set_tris_a(0x00); 
+ set_tris_b(0x02); 
+
+output_a(0x00);
+
+
+ output_high(pin_b3); 
+ 
+ while(1)
+ {
+ enable_interrupts(int_rda);
+ 
+ enable_interrupts(GLOBAL);
+  
+
+if(a>1  && !input(mod)) {
+
+     //////////////////////////////////7     
+         if(xdata=='A' && s1==1)
+           
+            {
+             output_high(pin_a3);
+             
+           xdata='Z';
+           
+             s1=0;
+            }
+
+
+
+         if(xdata=='B' && s2==1)
+           
+            {
+             output_high(pin_a2);
+              
+             xdata='Z'; 
+             s2=0;
+            }        
+
+/////////////////////////////////////////////
+
+       if(xdata=='A' && s1==0)
+           
+            {
+             output_low(pin_a3);
+             
+             xdata='Z';
+             s1=1;
+            }
+
+
+
+         if(xdata=='B' && s2==0)
+           
+            {
+             output_low(pin_a2);
+             
+        
+            xdata='Z';
+             s2=1;
+            } 
+
+
+
+
+         a=0;
+         
+        }
+ 
+
+  }
+  }
+
+

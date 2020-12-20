@@ -1,0 +1,20 @@
+[PROJECT]
+Target=alýcý.hex
+Processor_Text=PIC16F628A
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=alýcý.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[alýcý.c]
+Type=4
+[mru-list]
+1=alýcý.c
+[Opened Files]
+1=alýcý.c
+2=
+3=
+[Units]
+Count=1
+1=alýcý (main)

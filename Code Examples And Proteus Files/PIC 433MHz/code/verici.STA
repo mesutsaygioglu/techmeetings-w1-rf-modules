@@ -1,0 +1,51 @@
+
+ROM used:   196/2048 (10%)
+            196/2048 (10%) including unused fragments
+
+            0.3 Average locations per line
+            3.6 Average locations per statement
+
+RAM used:   7/224 (3%) at main() level
+            12/224 (5%) worst case
+
+Stack used: 1 worst case (1 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  113    54 100  verici.c
+  518     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F628A.h
+----- -----
+  631    54 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  11    1             @delay_ms1
+0     95  48    0   789  5.3  main
+0     45  23    0   409  3.6  preambleAndSynchronization
+0      5   3    0    17  0.8  turnOffLED
+0      5   3    0    17  0.8  turnOnLED
+0      5   3    0    17  0.8  sendFlagData
+0      8   4    0    21  1.0  readButtonOne
+0      8   4    0    21  1.0  readButtonTwo
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               7
+    Statements              54
+    Comments                107
+    Volume (V)              1723
+    Difficulty (D)          15.4
+    Effort to implement (E) 26490
+    Time to implement (T)   25 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   8
+    Maintainability (MI)    98
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   192  1852  
+
+
+
